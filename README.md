@@ -11,7 +11,7 @@ What we are going to do to set up tutorial is :
   - link RCTCameraRoll library
   - add permission to access user photo library
   
-<img src ="https://catasy.cafe24.com/tutorial/s3_tutorial.gif">
+![Alt Text](https://catasy.cafe24.com/tutorial/s3_tutorial.gif)
 
 ```
 react-native init s3-react-native-tutorial
