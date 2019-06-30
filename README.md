@@ -55,7 +55,7 @@ At Info tab, you should be able to find Custom iOS Target Properties. Add key Pr
 <img src="https://catasy.cafe24.com/tutorial/Screen%20Shot%202019-06-24%20at%203.20.15%20PM.png" width="80%">
 
 Let's go back to your project and create src/const/aws.js and replace access and secret key with yours.
-```
+```javascript
 //  create src/const/aws.js 
 
 export const awsConfig = {
@@ -66,7 +66,7 @@ export const awsConfig = {
 ```
 
 Then we will define interface for response type in src/uploadPhoto.tsx
-```
+```javascript
 //  src/uploadPhoto.tsx
 // Object return by RNS3
 interface Response {
@@ -80,7 +80,7 @@ interface Response {
 ```
 
 and single function to upload file to s3 bucket
-```
+```javascript
 //  src/uploadPhoto.tsx
 
 function uploadImage(data: string, fileName : string) {
@@ -110,7 +110,7 @@ function uploadImage(data: string, fileName : string) {
 
 Since popup component renders the same result given the same props, we can wrap it in a call to React.memo for a performance boost.
 [React memo](https://reactjs.org/docs/react-api.html#reactmemo)
-```
+```javascript
 
 export default React.memo(function PopupPhoto(props) {
   
@@ -139,7 +139,7 @@ export default React.memo(function PopupPhoto(props) {
 ```
 
 All you need to do now is to work on main App.tsx file.
-```
+```javascript
 export default class App extends Component {
 
     constructor(props){
