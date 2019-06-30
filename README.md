@@ -195,6 +195,6 @@ After updating some style file(you can find it on this repository), lets run the
 ```
 react-native run-ios
 ```
-
+App should be working like this : 
 ![Alt Text](https://catasy.cafe24.com/tutorial/s3_tutorial.gif)
 
