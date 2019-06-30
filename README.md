@@ -192,7 +192,7 @@ export default class App extends Component {
 ```
 
 After updating some style file(you can find it on this repository), lets run the app!
-``
+```
 react-native run-ios
 ```
 
