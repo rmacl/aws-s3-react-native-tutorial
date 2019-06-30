@@ -56,3 +56,59 @@ Then go to "Build Phases" tab and add libRCTCameraRoll.a to Link Binary with Lib
 At Info tab, you should be able to find Custom iOS Target Properties. Add key Privacy - Photo Library Usage Description and Privacy - Photo Library Usage Description
 <img src="https://catasy.cafe24.com/tutorial/Screen%20Shot%202019-06-24%20at%203.20.15%20PM.png" width="80%">
 
+
+Let's go back to your project and create src/const/aws.js and replace access and secret key with yours.
+```
+//  create src/const/aws.js 
+
+export const awsConfig = {
+    region: "ap-northeast-2",
+    accessKey: "YOUR_ACCESS_KEY",
+    secretKey: "YOUR_SECRET_KEY"
+    }
+```
+
+Then we will define interface for response type in src/uploadPhoto.tsx
+```
+//  src/uploadPhoto.tsx
+// Object return by RNS3
+interface Response {
+  status: number,
+  body: {
+    postResponse: {
+      location: string
+    }
+  }
+};
+```
+
+and single function to upload file to s3 bucket
+```
+//  src/uploadPhoto.tsx
+
+function uploadImage(data: string, fileName : string) {
+  const aTempFile =  {
+    uri:  data,
+    name: fileName,
+    type: "image/jpeg"
+  };
+  const aTempConfig = {
+    keyPrefix: "images/",
+    bucket: "makgoli",
+    region: awsConfig.region,
+    accessKey: awsConfig.accessKey,
+    secretKey: awsConfig.secretKey,
+    successActionStatus: 201
+  };
+
+  return RNS3.put(aTempFile, aTempConfig).then((response: Response) => {
+        
+        if (response.status !== 201){
+          throw new Error("Failed to upload image to S3");
+        }
+        return response.body.postResponse.location;
+      });
+}
+```
+
+
